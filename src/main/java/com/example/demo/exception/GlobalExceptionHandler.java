@@ -19,4 +19,10 @@ public class GlobalExceptionHandler {
 		String message = ex.getBindingResult().getFieldError().getDefaultMessage();
 	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
 	}
+	
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public ResponseEntity<String> handleCustomerNotAvailable(CustomerNotFoundException ex){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+	
 }

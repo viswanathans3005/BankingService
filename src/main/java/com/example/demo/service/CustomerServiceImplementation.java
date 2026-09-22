@@ -9,6 +9,7 @@ import com.example.demo.dto.response.CustomerResponseDto;
 import com.example.demo.entity.Customer;
 import com.example.demo.enums.CustomerStatus;
 import com.example.demo.exception.CustomerAlreadyExistsException;
+import com.example.demo.exception.CustomerNotFoundException;
 import com.example.demo.mapper.CustomerMapper;
 import com.example.demo.repository.CustomerRepository;
 
@@ -41,7 +42,7 @@ public class CustomerServiceImplementation implements CustomerService{
 
 	@Override
 	public CustomerResponseDto getCustomerbyId(Long id) {
-		Customer cust = custRepo.findById(id).orElseThrow(()->new RuntimeException("id not found"));
+		Customer cust = custRepo.findById(id).orElseThrow(()->new CustomerNotFoundException("Customer id not Available :"+id));
 	return cusMap.toResponse(cust);
 	
 	}
