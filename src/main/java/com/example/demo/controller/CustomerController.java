@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +43,13 @@ public class CustomerController {
 	public ResponseEntity<CustomerResponseDto> getCustbyId(@PathVariable Long id){
 		CustomerResponseDto cust = custService.getCustomerbyId(id);
 		return ResponseEntity.ok(cust);
+	}
+	
+	@GetMapping("/getall")
+	public ResponseEntity<List<CustomerResponseDto>> getAllCustResp(){
+		List<CustomerResponseDto> cus = custService.getAllCustomer();
+		return ResponseEntity.ok(cus);
+		
 	}
 	
 	

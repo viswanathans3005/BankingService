@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,15 @@ public class CustomerServiceImplementation implements CustomerService{
 	return cusMap.toResponse(cust);
 	
 	}
-	
-	
 
+	@Override
+	public List<CustomerResponseDto> getAllCustomer() {
+		List<Customer> customer = custRepo.findAll();
+		List<CustomerResponseDto> response = new ArrayList<>();
+		for(Customer cust : customer) {
+			CustomerResponseDto res = cusMap.toResponse(cust);
+			response.add(res);
+		}
+		return response;
+		}
 }
